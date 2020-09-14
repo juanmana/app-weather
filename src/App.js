@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import "./App.css";
 import Form from "./components/Form";
-import Wheather from "./components/Wheather";
+import Weather from "./components/Weather";
 
 function App() {
-  const [wheather, setWheather] = useState([]);
+  const [weather, setWeather] = useState([]);
 
   const APIKEY = "b10cdbf1e306765ca4137cae9ec09552";
 
@@ -21,7 +21,7 @@ function App() {
         .then(res => res.json())
         .then(data => data)
         if(city && country){
-        setWheather({
+        setWeather({
           data: apiData,
           city : apiData.name,
           country: apiData.sys.country,
@@ -33,7 +33,7 @@ function App() {
     );
   }else{
 
-    setWheather({
+    setWeather({
       data: "",
       city : "",
       country:"",
@@ -49,19 +49,18 @@ function App() {
 
   return (
     <div className="App">
-      <h1>WHEATHER HOOKS </h1>
+      <h1>WEATHER HOOKS </h1>
 
-      <Form getWheather={fetchData} />
-      <Wheather 
-      city={wheather.city} 
-      country={wheather.country}
-      temperature={wheather.temperature}
-      description={wheather.description}
-      error={wheather.error}
+      <Form getWeather={fetchData} />
+      <Weather 
+      city={weather.city} 
+      country={weather.country}
+      temperature={weather.temperature}
+      description={weather.description}
+      error={weather.error}
 
       
       />
-      {console.log(wheather.data)}
     </div>
   );
 }
